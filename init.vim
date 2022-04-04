@@ -25,10 +25,17 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'ervandew/supertab'
 Plug 'preservim/nerdtree'
+Plug 'turbio/bracey.vim'
 
 call plug#end()
 
 inoremap jk <Esc>
+inoremap { {}<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap < <><left>
+inoremap " ""<left>
+inoremap ' ''<left>
 nnoremap <C-j> :tabprevious<CR>
 nnoremap <C-k> :tabnext<CR>
 nnoremap <F3> :set hlsearch!<CR>
