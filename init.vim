@@ -26,6 +26,8 @@ Plug 'honza/vim-snippets'
 Plug 'ervandew/supertab'
 Plug 'preservim/nerdtree'
 Plug 'turbio/bracey.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
@@ -36,6 +38,7 @@ inoremap [ []<left>
 inoremap < <><left>
 inoremap " ""<left>
 inoremap ' ''<left>
+inoremap $ $$<left>
 nnoremap <C-j> :tabprevious<CR>
 nnoremap <C-k> :tabnext<CR>
 nnoremap <F3> :set hlsearch!<CR>
@@ -58,10 +61,19 @@ autocmd FileType tex nnoremap <buffer> k gk
 autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 
+"JAVASCRIPT"
+autocmd FileType javascript noremap <buffer> <F9> :w<CR>
+autocmd FileType javascript imap <buffer> <F9> <esc>:w<CR>
+
+"C
+
 autocmd FileType c map <buffer> <F8> :w<CR>:exec 'make all' shellescape(@%, 1)<CR>
 autocmd FileType c imap <buffer> <F8> <esc>:w<CR>:exec 'make all' shellescape(@%, 1)<CR>
 autocmd FileType c map <buffer> <F9> :w<CR>:exec 'make download' shellescape(@%, 1)<CR>
 autocmd FileType c imap <buffer> <F9> <esc>:w<CR>:exec 'make download' shellescape(@%, 1)<CR>
+
+"fzf
+nnoremap <C-p> :Files<Cr>
 
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsListSnippets="<c-l>"
