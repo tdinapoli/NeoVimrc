@@ -14,6 +14,7 @@ set undofile
 set incsearch
 set number relativenumber
 set wildmode=longest,list,full
+set clipboard+=unnamedplus
 
 let mapleader=","
 
@@ -42,6 +43,10 @@ inoremap $ $$<left>
 nnoremap <C-j> :tabprevious<CR>
 nnoremap <C-k> :tabnext<CR>
 nnoremap <F3> :set hlsearch!<CR>
+nnoremap j gj
+nnoremap k gk
+nnoremap >> <<
+nnoremap << >>
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-h> <C-w>h
@@ -49,12 +54,17 @@ map <C-l> <C-w>l
 
 map <leader>n :NERDTreeToggle<CR>
 
+""MOUSE
+set mouse=a
+
 ""AUTO CMDS
 
 "LATEX
 
 autocmd FileType tex nnoremap <buffer> j gj
 autocmd FileType tex nnoremap <buffer> k gk
+autocmd FileType tex map <buffer> <F9> :w<CR>:exec '!pdflatex -interacion=nonstopmode' shellescape(@%, 1)<CR>
+autocmd FileType tex imap <buffer> <F9> <esc>:w<CR>:exec '!pdflatex -interaction=nonstopmode' shellescape(@%, 1)<CR>
 
 "PYTHON
 
@@ -74,6 +84,7 @@ autocmd FileType c imap <buffer> <F9> <esc>:w<CR>:exec 'make download' shellesca
 
 "fzf
 nnoremap <C-p> :Files<Cr>
+nmap <silent> <leader>a :History<CR>
 
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsListSnippets="<c-l>"
