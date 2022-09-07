@@ -54,6 +54,7 @@ map <C-l> <C-w>l
 
 map <leader>n :NERDTreeToggle<CR>
 
+
 ""MOUSE
 set mouse=a
 
@@ -70,6 +71,8 @@ autocmd FileType tex imap <buffer> <F9> <esc>:w<CR>:exec '!pdflatex -interaction
 
 autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+autocmd FileType python nnoremap <leader>c :echo getline(search('class ', 'bn'))<CR>
+autocmd FileType python nnoremap <leader>f :echo getline(search('def ', 'bn'))<CR>
 
 "JAVASCRIPT"
 autocmd FileType javascript noremap <buffer> <F9> :w<CR>
