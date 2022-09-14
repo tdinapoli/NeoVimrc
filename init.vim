@@ -47,6 +47,8 @@ nnoremap j gj
 nnoremap k gk
 nnoremap >> <<
 nnoremap << >>
+nnoremap <leader>p "+p
+nnoremap <leader>s :update<CR>
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-h> <C-w>h
