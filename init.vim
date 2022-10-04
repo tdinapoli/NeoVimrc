@@ -29,6 +29,7 @@ Plug 'preservim/nerdtree'
 Plug 'turbio/bracey.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'conornewton/vim-pandoc-markdown-preview'
 
 call plug#end()
 
@@ -48,13 +49,15 @@ nnoremap k gk
 nnoremap >> <<
 nnoremap << >>
 nnoremap <leader>p "+p
-nnoremap <leader>s :update<CR>
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-h> <C-w>h
 map <C-l> <C-w>l
 
 map <leader>n :NERDTreeToggle<CR>
+inoremap <leader>n <esc>:NERDTreeToggle<CR>
+map <leader>s :update<CR>
+inoremap <leader>s <esc>:update<CR>
 
 
 ""MOUSE
@@ -86,6 +89,11 @@ autocmd FileType c map <buffer> <F8> :w<CR>:exec 'make all' shellescape(@%, 1)<C
 autocmd FileType c imap <buffer> <F8> <esc>:w<CR>:exec 'make all' shellescape(@%, 1)<CR>
 autocmd FileType c map <buffer> <F9> :w<CR>:exec 'make download' shellescape(@%, 1)<CR>
 autocmd FileType c imap <buffer> <F9> <esc>:w<CR>:exec 'make download' shellescape(@%, 1)<CR>
+
+"MARKDOWN
+
+autocmd FileType markdown map <buffer> <F9> :w<CR>
+autocmd FileType markdown imap <buffer> <F9> <esc>:w<CR>
 
 "fzf
 nnoremap <C-p> :Files<Cr>
