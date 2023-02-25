@@ -15,6 +15,7 @@ set incsearch
 set number relativenumber
 set wildmode=longest,list,full
 set clipboard+=unnamedplus
+set scrolloff=5
 
 let mapleader=","
 
@@ -30,14 +31,21 @@ Plug 'turbio/bracey.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'conornewton/vim-pandoc-markdown-preview'
+Plug 'cespare/vim-toml', { 'branch':'main' }
 
 call plug#end()
 
 inoremap jk <Esc>
+inoremap kj <Esc>
+inoremap jK <Esc>
+inoremap Jk <Esc>
+inoremap JK <Esc>
+inoremap Kj <Esc>
+inoremap kJ <Esc>
+inoremap KJ <Esc>
 inoremap { {}<left>
 inoremap ( ()<left>
 inoremap [ []<left>
-inoremap < <><left>
 inoremap " ""<left>
 inoremap ' ''<left>
 inoremap $ $$<left>
@@ -49,6 +57,7 @@ nnoremap k gk
 nnoremap >> <<
 nnoremap << >>
 nnoremap <leader>p "+p
+nnoremap <leader>o <C-^>
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-h> <C-w>h
@@ -69,8 +78,10 @@ set mouse=a
 
 autocmd FileType tex nnoremap <buffer> j gj
 autocmd FileType tex nnoremap <buffer> k gk
-autocmd FileType tex map <buffer> <F9> :w<CR>:exec '!pdflatex -interacion=nonstopmode' shellescape(@%, 1)<CR>
-autocmd FileType tex imap <buffer> <F9> <esc>:w<CR>:exec '!pdflatex -interaction=nonstopmode' shellescape(@%, 1)<CR>
+autocmd FileType tex map <buffer> <F9> :w<CR>:exec '!pdflatex -interacion=nonstopmode > /tmp/tmp.log 2>&1' shellescape(@%, 1)<CR>
+autocmd FileType tex imap <buffer> <F9> <esc>:w<CR>:exec '!pdflatex -interaction=nonstopmode > /tmp/tmp.log 2>&1' shellescape(@%, 1)<CR>
+autocmd FileType tex nnoremap <buffer> <leader>l <C-W>s:e /tmp/tmp.log<CR>
+autocmd FileType tex inoremap <buffer> <leader>l <C-W>s:e /tmp/tmp.log<CR>
 
 "PYTHON
 
@@ -78,6 +89,11 @@ autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%,
 autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 autocmd FileType python nnoremap <leader>c :echo getline(search('class ', 'bn'))<CR>
 autocmd FileType python nnoremap <leader>f :echo getline(search('def ', 'bn'))<CR>
+
+"SHELL
+
+autocmd FileType sh map <buffer> <F9> :w<CR>:!./%<CR>
+autocmd FileType sh imap <buffer> <esc><F9> :w<CR>:!./%<CR>
 
 "JAVASCRIPT"
 autocmd FileType javascript noremap <buffer> <F9> :w<CR>
